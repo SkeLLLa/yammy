@@ -1,0 +1,74 @@
+{
+  "name": "yammy",
+  "version": "1.0.0",
+  "description": "Yet another mongo migration tool",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "lint": "eslint --ext .ts .",
+    "test": "npm audit || true && npm run lint && npm run unit",
+    "unit": "exit 0",
+    "postunit": "exit 0 && codecov",
+    "build": "npm run build:node",
+    "build:node": "tsc",
+    "prerelease": "npm run typedoc && git add -A ./docs",
+    "release": "git add -A && standard-version -a",
+    "typedoc": "rm -rf ./docs/* && typedoc --excludeExternals --name \"$npm_package_name\" --readme none --mode file --includeDeclarations --excludePrivate --theme markdown --out ./docs"
+  },
+  "keywords": [
+    "mongo",
+    "mongodb",
+    "migrate",
+    "migration"
+  ],
+  "author": "m03geek",
+  "license": "MIT",
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.ts",
+    "dist/**/*.map"
+  ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "standard-version": {
+    "scripts": {
+      "prerelease": "npm test",
+      "postbump": "echo Version: v$npm_package_version",
+      "posttag": "git push --follow-tags"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.2.0",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^13.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
+    "@typescript-eslint/typescript-estree": "^2.16.0",
+    "codecov": "^3.6.1",
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-sort-requires": "^2.1.0",
+    "husky": "^4.0.10",
+    "jest": "^24.9.0",
+    "prettier": "^1.19.1",
+    "prettier-plugin-packagejson": "^2.0.10",
+    "pretty-quick": "^2.0.1",
+    "standard-version": "^7.0.1",
+    "ts-jest": "^24.2.0",
+    "ts-node": "^8.5.4",
+    "tslint": "^5.20.1",
+    "typedoc": "^0.16.0",
+    "typedoc-plugin-markdown": "^2.2.14",
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "@types/mongodb": "^3.3.14",
+    "mongodb": "^3.5.2"
+  }
+}

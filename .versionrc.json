@@ -1,0 +1,11 @@
+{
+  "issueUrlFormat": "https://gitlab.com/{{owner}}/{{repository}}/issues/{{id}}",
+  "commitUrlFormat": "https://gitlab.com/{{owner}}/{{repository}}/commit/{{hash}}",
+  "compareUrlFormat": "https://gitlab.com/{{owner}}/{{repository}}/compare/{{previousTag}}...{{currentTag}}",
+  "types": [
+    { "type": "feat", "section": "Features" },
+    { "type": "fix", "section": "Bug Fixes" },
+    { "type": "test", "section": "Tests" },
+    { "type": "chore", "section": "Misc" }
+  ]
+}
