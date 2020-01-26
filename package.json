@@ -2,6 +2,7 @@
   "name": "yammy",
   "version": "1.0.0",
   "description": "Yet another mongo migration tool",
+  "bin": "dist/bin/cli.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

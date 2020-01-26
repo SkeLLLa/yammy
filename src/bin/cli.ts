@@ -1,1 +1,4 @@
-export default 1;
+// import Migrate from '../index';
+// const [, , action, count] = process.argv;
+
+process.exit(0);
