@@ -1,6 +1,6 @@
 import path from 'path';
 import { promises as fs } from 'fs';
-import { MongoClient, MongoClientOptions } from 'mongodb';
+import { MongoClient, MongoClientOptions, Db, Collection, ClientSession } from 'mongodb';
 
 export interface DbOptions {
   /**
@@ -25,9 +25,40 @@ export interface MigrateOptions {
    * @default '__changelog__'
    */
   changelog?: string;
+  /**
+   * Closes DB connection after migrations are applied or rolled back.
+   * @default: true
+   */
+  autoClose?: boolean;
 }
 
-interface MigrateOptionsDefined {
+/**
+ * Migration function.
+ * @param db DB instance.
+ * @param session MongoDB session, if passed it will use transaction.
+ */
+export type MigrationFunction = (db: Db, session?: ClientSession) => Promise<void>;
+
+export interface MigrationStatus {
+  fileName: string;
+  applied: boolean;
+  appliedAt?: Date;
+}
+
+export interface Migration {
+  db: string;
+  up: MigrationFunction;
+  down: MigrationFunction;
+}
+
+export interface MigrationFile {
+  fileName: string;
+  migration: Migration;
+  db: Db;
+  status: Date | null;
+}
+
+interface MigrateOptionsDefaults {
   /**
    * Directory with migrations, relative to your program cwd or absolute
    * @default 'migrations'
@@ -38,12 +69,21 @@ interface MigrateOptionsDefined {
    * @default '__changelog__'
    */
   changelog: string;
+  /**
+   * Closes DB connection after migrations are applied or rolled back.
+   * @default: true
+   */
+  autoClose: boolean;
 }
 
 class Migrate {
   private _client: MongoClient;
-  private _options: MigrateOptionsDefined = { changelog: '__changelog__', dir: 'migrations' };
-  private _files: Array<string> = [];
+  private _options: MigrateOptionsDefaults = {
+    changelog: '__changelog__',
+    dir: 'migrations',
+    autoClose: true,
+  };
+  private _files: Array<MigrationFile> = [];
   constructor(
     { uri = 'mongodb://localhost', options }: DbOptions = {},
     migrateOptions: MigrateOptions = {}
@@ -56,20 +96,56 @@ class Migrate {
   }
 
   /**
-   * Migration files
-   * @returns migration files list
+   * Get migrations status
+   * @returns migrations status
    */
-  get files(): Array<string> {
-    return this._files;
+  get status(): Array<MigrationStatus> {
+    return this._files.map(({ fileName, status }) => {
+      return {
+        fileName,
+        applied: !!status,
+        appliedAt: status ? status : undefined,
+      };
+    });
   }
 
   /**
    * Initializes migrations
    */
   async init(): Promise<void> {
-    this._files = await fs.readdir(this._options.dir);
-    this._files = this._files.sort();
+    const files = await fs.readdir(this._options.dir);
+    const dbs: Map<string, Collection<any>> = new Map();
     await this._client.connect();
+
+    for (const fileName of files.sort()) {
+      const filePath = path.join(this._options.dir, fileName);
+      const migration = await import(filePath);
+
+      const db = this._client.db(migration.db);
+      const mCollection = db.collection(this._options.changelog);
+      dbs.set(migration.name, mCollection);
+      const status = await mCollection.findOne({ fileName });
+
+      this._files.push({
+        fileName,
+        migration,
+        db,
+        status: status ? status.appliedAt : null,
+      });
+    }
+
+    await Promise.all(
+      Array.from(dbs.values()).map((collection) => {
+        return collection
+          .createIndex(
+            {
+              fileName: 1,
+            },
+            { unique: true, name: 'fileName_1' }
+          )
+          .catch();
+      })
+    );
   }
 
   /**
@@ -78,26 +154,53 @@ class Migrate {
    */
   async up(howMany = Infinity): Promise<void> {
     let count = howMany;
-    for (const fileName of this._files) {
+
+    for (const file of this._files) {
+      const { migration, db, fileName, status } = file;
+      if (status) {
+        continue;
+      }
       if (count === 0) {
         break;
       }
-      const filePath = path.join(this._options.dir, fileName);
-      const migration = await import(filePath);
-      const db = this._client.db(migration.db);
+
       const mCollection = db.collection(this._options.changelog);
-      const appliedMigration = await mCollection.findOne({ file: fileName });
-      if (appliedMigration) {
-        continue;
-      }
       count--;
-      await migration.up(db);
-      await mCollection.insertOne({
-        file: fileName,
-        createdAt: new Date(),
-      });
+      let session;
+      const useTransaction = migration.up.length === 2;
+      if (useTransaction) {
+        session = this._client.startSession();
+        session.startTransaction();
+      }
+      try {
+        const appliedAt = new Date();
+        await migration.up(db, session);
+        await mCollection.insertOne(
+          {
+            fileName,
+            appliedAt,
+          },
+          { session }
+        );
+        if (session) {
+          await session.commitTransaction();
+        }
+        file.status = appliedAt;
+      } catch (err) {
+        if (session) {
+          await session.abortTransaction();
+        }
+        throw err;
+      } finally {
+        if (session) {
+          session.endSession();
+        }
+      }
     }
-    await this.close();
+
+    if (this._options.autoClose) {
+      await this.close();
+    }
   }
 
   /**
@@ -106,25 +209,47 @@ class Migrate {
    */
   async down(howMany = Infinity): Promise<void> {
     let count = howMany;
-    for (const fileName of this._files.reverse()) {
+    for (const file of this._files.reverse()) {
+      const { migration, db, fileName, status } = file;
+      if (!status) {
+        continue;
+      }
       if (count === 0) {
         break;
       }
-      const filePath = path.join(this._options.dir, fileName);
-      const migration = await import(filePath);
-      const db = this._client.db(migration.db);
       const mCollection = db.collection(this._options.changelog);
-      const appliedMigration = await mCollection.findOne({ file: fileName });
-      if (!appliedMigration) {
-        continue;
-      }
       count--;
-      await migration.down(db);
-      await mCollection.deleteOne({
-        _id: appliedMigration._id,
-      });
+      let session;
+      const useTransaction = migration.up.length === 2;
+      if (useTransaction) {
+        session = this._client.startSession();
+        session.startTransaction();
+      }
+      try {
+        await migration.down(db, session);
+        await mCollection.deleteOne(
+          {
+            fileName,
+          },
+          { session }
+        );
+        if (session) {
+          await session.commitTransaction();
+        }
+      } catch (err) {
+        if (session) {
+          await session.abortTransaction();
+        }
+        throw err;
+      } finally {
+        if (session) {
+          session.endSession();
+        }
+      }
     }
-    await this.close();
+    if (this._options.autoClose) {
+      await this.close();
+    }
   }
 
   /**

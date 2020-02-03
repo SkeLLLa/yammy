@@ -38,9 +38,13 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/__tests__/*.js', '**/test/*.js'],
+      files: ['**/__tests__/**/*', '**/test/**/*'],
       env: {
         jest: true,
+      },
+      parserOptions: {
+        project: '.eslint.tsconfig.json',
+        sourceType: 'module',
       },
     },
   ],

@@ -10,10 +10,23 @@
 
 ### Properties
 
+* [autoClose](migrateoptions.md#optional-autoclose)
 * [changelog](migrateoptions.md#optional-changelog)
 * [dir](migrateoptions.md#optional-dir)
 
 ## Properties
+
+### `Optional` autoClose
+
+• **autoClose**? : *undefined | false | true*
+
+Defined in index.ts:32
+
+Closes DB connection after migrations are applied or rolled back.
+
+**`default:`** true
+
+___
 
 ### `Optional` changelog
 

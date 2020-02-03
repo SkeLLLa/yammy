@@ -14,7 +14,7 @@
 
 ### Accessors
 
-* [files](migrate.md#files)
+* [status](migrate.md#status)
 
 ### Methods
 
@@ -29,7 +29,7 @@
 
 \+ **new Migrate**(`__namedParameters`: object, `migrateOptions`: [MigrateOptions](../interfaces/migrateoptions.md)): *[Migrate](migrate.md)*
 
-Defined in index.ts:46
+Defined in index.ts:86
 
 **Parameters:**
 
@@ -46,17 +46,17 @@ Name | Type | Default |
 
 ## Accessors
 
-###  files
+###  status
 
-• **get files**(): *Array‹string›*
+• **get status**(): *Array‹[MigrationStatus](../interfaces/migrationstatus.md)›*
 
-Defined in index.ts:62
+Defined in index.ts:102
 
-Migration files
+Get migrations status
 
-**Returns:** *Array‹string›*
+**Returns:** *Array‹[MigrationStatus](../interfaces/migrationstatus.md)›*
 
-migration files list
+migrations status
 
 ## Methods
 
@@ -64,7 +64,7 @@ migration files list
 
 ▸ **close**(): *Promise‹void›*
 
-Defined in index.ts:133
+Defined in index.ts:258
 
 Closes DB connection
 
@@ -76,7 +76,7 @@ ___
 
 ▸ **down**(`howMany`: number): *Promise‹void›*
 
-Defined in index.ts:107
+Defined in index.ts:210
 
 Rollbacks migrations
 
@@ -94,7 +94,7 @@ ___
 
 ▸ **init**(): *Promise‹void›*
 
-Defined in index.ts:69
+Defined in index.ts:115
 
 Initializes migrations
 
@@ -106,7 +106,7 @@ ___
 
 ▸ **up**(`howMany`: number): *Promise‹void›*
 
-Defined in index.ts:79
+Defined in index.ts:155
 
 Applies migrations
 
