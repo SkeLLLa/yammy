@@ -7,3 +7,4 @@ node_modules/
 **/*.xxx.js
 **/*.js
 dist/
+example/

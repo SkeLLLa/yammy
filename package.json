@@ -2,14 +2,17 @@
   "name": "yammy",
   "version": "1.1.0",
   "description": "Yet another mongo migration tool",
-  "bin": "dist/bin/cli.js",
+  "bin": {
+    "yammy": "bin/run"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "lint": "eslint --ext .ts .",
     "test": "npm audit || true && npm run lint && npm run unit",
     "unit": "jest",
-    "postunit": "exit 0 && codecov",
+    "postunit": "codecov || true",
+    "prebuild": "rm -rf dist",
     "build": "npm run build:node",
     "build:node": "tsc",
     "prerelease": "npm run typedoc && git add -A ./docs",
@@ -25,6 +28,8 @@
   "author": "m03geek",
   "license": "MIT",
   "files": [
+    "bin/*",
+    "example/*",
     "dist/**/*.js",
     "dist/**/*.ts",
     "dist/**/*.map"
@@ -41,9 +46,18 @@
       "posttag": "git push --follow-tags"
     }
   },
+  "oclif": {
+    "commands": "./dist/commands",
+    "bin": "yammy",
+    "plugins": [
+      "@oclif/plugin-help",
+      "@oclif/plugin-autocomplete"
+    ]
+  },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.2.0",
+    "@oclif/dev-cli": "^1.22.2",
     "@types/jest": "^25.0.0",
     "@types/node": "^13.7.0",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
@@ -69,7 +83,12 @@
     "typescript": "^3.7.3"
   },
   "dependencies": {
+    "@oclif/command": "^1.5.19",
+    "@oclif/config": "^1.13.3",
+    "@oclif/plugin-autocomplete": "^0.1.5",
+    "@oclif/plugin-help": "^2.2.3",
     "@types/mongodb": "^3.3.15",
+    "cli-ux": "^5.4.4",
     "mongodb": "^3.5.2"
   }
 }

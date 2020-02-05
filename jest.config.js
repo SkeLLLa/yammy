@@ -3,7 +3,7 @@
 
 module.exports = {
   collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.(ts|js)'],
+  collectCoverageFrom: ['src/*.(ts|js)'],
   coverageReporters: ['lcov', 'text'],
   preset: 'ts-jest',
   testTimeout: 10 * 1000,

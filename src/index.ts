@@ -209,7 +209,7 @@ class Migrate {
    */
   async down(howMany = Infinity): Promise<void> {
     let count = howMany;
-    for (const file of this._files.reverse()) {
+    for (const file of this._files.slice().reverse()) {
       const { migration, db, fileName, status } = file;
       if (!status) {
         continue;
