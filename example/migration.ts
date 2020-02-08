@@ -8,13 +8,13 @@ export const db = 'myDatabase';
 /**
  * Function that applies transaction
  * @param db Mongo DB instance
- * @param session Optional session param. If provided Yammy will use transactions.
+ * @param session Optional session param. Remove if you don't need transactions.
  */
-export async function up(db: Db) {}
+export async function up(db: Db, session?: ClientSession) {}
 
 /**
  * Function that rolls back transaction
  * @param db Mongo DB instance
- * @param session Optional session param. If provided Yammy will use transactions.
+ * @param session Optional session param. Remove if you don't need transactions.
  */
-export async function down(db: Db) {}
+export async function down(db: Db, session?: ClientSession) {}
