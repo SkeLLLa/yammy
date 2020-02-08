@@ -21,7 +21,7 @@
 
 • **db**: *Db*
 
-Defined in index.ts:57
+Defined in src/index.ts:57
 
 ___
 
@@ -29,7 +29,7 @@ ___
 
 • **fileName**: *string*
 
-Defined in index.ts:55
+Defined in src/index.ts:55
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **migration**: *[Migration](migration.md)*
 
-Defined in index.ts:56
+Defined in src/index.ts:56
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 • **status**: *Date | null*
 
-Defined in index.ts:58
+Defined in src/index.ts:58

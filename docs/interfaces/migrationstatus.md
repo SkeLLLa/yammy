@@ -20,7 +20,7 @@
 
 • **applied**: *boolean*
 
-Defined in index.ts:44
+Defined in src/index.ts:44
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • **appliedAt**? : *Date*
 
-Defined in index.ts:45
+Defined in src/index.ts:45
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **fileName**: *string*
 
-Defined in index.ts:43
+Defined in src/index.ts:43

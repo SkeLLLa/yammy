@@ -20,7 +20,7 @@
 
 • **db**: *string*
 
-Defined in index.ts:49
+Defined in src/index.ts:49
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • **down**: *[MigrationFunction](../README.md#migrationfunction)*
 
-Defined in index.ts:51
+Defined in src/index.ts:51
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **up**: *[MigrationFunction](../README.md#migrationfunction)*
 
-Defined in index.ts:50
+Defined in src/index.ts:50

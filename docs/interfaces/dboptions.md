@@ -6,6 +6,8 @@
 
 * **DbOptions**
 
+  ↳ [ConfigFile](configfile.md)
+
 ## Index
 
 ### Properties
@@ -19,7 +21,7 @@
 
 • **options**? : *MongoClientOptions*
 
-Defined in index.ts:14
+Defined in src/index.ts:14
 
 MongoDB client options
 
@@ -29,7 +31,7 @@ ___
 
 • **uri**? : *undefined | string*
 
-Defined in index.ts:10
+Defined in src/index.ts:10
 
 MongoDB connection string
 

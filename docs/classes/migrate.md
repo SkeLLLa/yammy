@@ -29,7 +29,7 @@
 
 \+ **new Migrate**(`__namedParameters`: object, `migrateOptions`: [MigrateOptions](../interfaces/migrateoptions.md)): *[Migrate](migrate.md)*
 
-Defined in index.ts:86
+Defined in src/index.ts:86
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ Name | Type | Default |
 
 • **get status**(): *Array‹[MigrationStatus](../interfaces/migrationstatus.md)›*
 
-Defined in index.ts:102
+Defined in src/index.ts:102
 
 Get migrations status
 
@@ -64,7 +64,7 @@ migrations status
 
 ▸ **close**(): *Promise‹void›*
 
-Defined in index.ts:258
+Defined in src/index.ts:258
 
 Closes DB connection
 
@@ -76,7 +76,7 @@ ___
 
 ▸ **down**(`howMany`: number): *Promise‹void›*
 
-Defined in index.ts:210
+Defined in src/index.ts:210
 
 Rollbacks migrations
 
@@ -94,7 +94,7 @@ ___
 
 ▸ **init**(): *Promise‹void›*
 
-Defined in index.ts:115
+Defined in src/index.ts:115
 
 Initializes migrations
 
@@ -106,7 +106,7 @@ ___
 
 ▸ **up**(`howMany`: number): *Promise‹void›*
 
-Defined in index.ts:155
+Defined in src/index.ts:155
 
 Applies migrations
 

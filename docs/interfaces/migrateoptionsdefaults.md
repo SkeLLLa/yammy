@@ -20,7 +20,7 @@
 
 • **autoClose**: *boolean*
 
-Defined in index.ts:76
+Defined in src/index.ts:76
 
 Closes DB connection after migrations are applied or rolled back.
 
@@ -32,7 +32,7 @@ ___
 
 • **changelog**: *string*
 
-Defined in index.ts:71
+Defined in src/index.ts:71
 
 Collection which is used to store migration history
 
@@ -44,7 +44,7 @@ ___
 
 • **dir**: *string*
 
-Defined in index.ts:66
+Defined in src/index.ts:66
 
 Directory with migrations, relative to your program cwd or absolute
 

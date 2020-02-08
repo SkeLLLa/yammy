@@ -6,6 +6,8 @@
 
 * **MigrateOptions**
 
+  ↳ [ConfigFile](configfile.md)
+
 ## Index
 
 ### Properties
@@ -20,7 +22,7 @@
 
 • **autoClose**? : *undefined | false | true*
 
-Defined in index.ts:32
+Defined in src/index.ts:32
 
 Closes DB connection after migrations are applied or rolled back.
 
@@ -32,7 +34,7 @@ ___
 
 • **changelog**? : *undefined | string*
 
-Defined in index.ts:27
+Defined in src/index.ts:27
 
 Collection which is used to store migration history
 
@@ -44,7 +46,7 @@ ___
 
 • **dir**? : *undefined | string*
 
-Defined in index.ts:22
+Defined in src/index.ts:22
 
 Directory with migrations, relative to your program cwd or absolute
 
