@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://gitlab.com/m03geek/yammy/compare/v1.1.0...v2.0.0) (2020-02-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* add transactions
+
+### Features
+
+* add cli, tests, transactions ([0c8da8f](https://gitlab.com/m03geek/yammy/commit/0c8da8fe248c71da719ebc64131b83f140a4152b))
+* support transactions, refactor migrations ([e8bfc25](https://gitlab.com/m03geek/yammy/commit/e8bfc255d63ab18549466e6c5436ebb5795046e2))
+
 ## 1.1.0 (2020-01-26)
 
 
