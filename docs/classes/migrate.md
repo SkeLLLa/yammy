@@ -64,7 +64,7 @@ migrations status
 
 ▸ **close**(): *Promise‹void›*
 
-Defined in src/index.ts:258
+Defined in src/index.ts:259
 
 Closes DB connection
 
