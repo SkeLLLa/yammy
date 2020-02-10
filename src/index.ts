@@ -236,6 +236,7 @@ class Migrate {
         if (session) {
           await session.commitTransaction();
         }
+        file.status = null;
       } catch (err) {
         if (session) {
           await session.abortTransaction();
