@@ -6,7 +6,7 @@ module.exports = {
   collectCoverageFrom: ['src/*.(ts|js)'],
   coverageReporters: ['lcov', 'text'],
   preset: 'ts-jest',
-  testTimeout: 10 * 1000,
+  testTimeout: 30 * 1000,
   globals: {
     'ts-jest': {
       tsConfig: 'tsconfig.json',

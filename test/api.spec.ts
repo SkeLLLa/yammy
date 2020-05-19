@@ -10,7 +10,6 @@ let client: MongoClient;
 beforeAll(async () => {
   // setup mem server;
   replSet = new MongoMemoryReplSet({
-    debug: false,
     replSet: { storageEngine: 'wiredTiger' },
   });
   await replSet.waitUntilRunning();
