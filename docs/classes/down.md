@@ -18,7 +18,6 @@
 
 * [argv](down.md#argv)
 * [config](down.md#config)
-* [ctor](down.md#ctor)
 * [debug](down.md#protected-debug)
 * [id](down.md#id)
 * [_base](down.md#static-_base)
@@ -36,6 +35,10 @@
 * [strict](down.md#static-strict)
 * [title](down.md#static-title)
 * [usage](down.md#static-usage)
+
+### Accessors
+
+* [ctor](down.md#ctor)
 
 ### Methods
 
@@ -65,7 +68,7 @@
 
 *Inherited from [Create](create.md).[constructor](create.md#constructor)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:43
+Defined in node_modules/@oclif/command/lib/command.d.ts:46
 
 **Parameters:**
 
@@ -98,23 +101,13 @@ Defined in node_modules/@oclif/command/lib/command.d.ts:10
 
 ___
 
-###  ctor
-
-• **ctor**: *typeof Command*
-
-*Inherited from [Create](create.md).[ctor](create.md#ctor)*
-
-Defined in node_modules/@oclif/command/lib/command.d.ts:45
-
-___
-
 ### `Protected` debug
 
 • **debug**: *function*
 
 *Inherited from [Create](create.md).[debug](create.md#protected-debug)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:43
+Defined in node_modules/@oclif/command/lib/command.d.ts:46
 
 #### Type declaration:
 
@@ -134,7 +127,7 @@ ___
 
 *Inherited from [Create](create.md).[id](create.md#static-id)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:42
+Defined in node_modules/@oclif/command/lib/command.d.ts:45
 
 ___
 
@@ -264,9 +257,15 @@ ___
 
 *Inherited from [Create](create.md).[run](create.md#static-run)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:41
+Defined in node_modules/@oclif/command/lib/command.d.ts:44
 
 instantiate and run the command
+
+**`param`** Class
+
+**`param`** argv
+
+**`param`** options
 
 ___
 
@@ -302,6 +301,18 @@ Defined in node_modules/@oclif/command/lib/command.d.ts:23
 
 An override string (or strings) for the default usage documentation
 
+## Accessors
+
+###  ctor
+
+• **get ctor**(): *typeof Command*
+
+*Inherited from [Create](create.md).[ctor](create.md#ctor)*
+
+Defined in node_modules/@oclif/command/lib/command.d.ts:48
+
+**Returns:** *typeof Command*
+
 ## Methods
 
 ### `Protected` _help
@@ -310,7 +321,7 @@ An override string (or strings) for the default usage documentation
 
 *Inherited from [Create](create.md).[_help](create.md#protected-_help)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:68
+Defined in node_modules/@oclif/command/lib/command.d.ts:71
 
 **Returns:** *never*
 
@@ -322,7 +333,7 @@ ___
 
 *Inherited from [Create](create.md).[_helpOverride](create.md#protected-_helpoverride)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:69
+Defined in node_modules/@oclif/command/lib/command.d.ts:72
 
 **Returns:** *boolean*
 
@@ -334,7 +345,7 @@ ___
 
 *Inherited from [Create](create.md).[_run](create.md#_run)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:46
+Defined in node_modules/@oclif/command/lib/command.d.ts:49
 
 **Type parameters:**
 
@@ -350,7 +361,7 @@ ___
 
 *Inherited from [Create](create.md).[_version](create.md#protected-_version)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:70
+Defined in node_modules/@oclif/command/lib/command.d.ts:73
 
 **Returns:** *never*
 
@@ -362,7 +373,7 @@ ___
 
 *Inherited from [Create](create.md).[catch](create.md#protected-catch)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:66
+Defined in node_modules/@oclif/command/lib/command.d.ts:69
 
 **Parameters:**
 
@@ -380,7 +391,7 @@ ___
 
 *Inherited from [Create](create.md).[error](create.md#error)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:49
+Defined in node_modules/@oclif/command/lib/command.d.ts:52
 
 **Parameters:**
 
@@ -399,7 +410,7 @@ Name | Type |
 
 *Inherited from [Create](create.md).[error](create.md#error)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:53
+Defined in node_modules/@oclif/command/lib/command.d.ts:56
 
 **Parameters:**
 
@@ -418,7 +429,7 @@ ___
 
 *Inherited from [Create](create.md).[exit](create.md#exit)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:47
+Defined in node_modules/@oclif/command/lib/command.d.ts:50
 
 **Parameters:**
 
@@ -436,7 +447,7 @@ ___
 
 *Inherited from [Create](create.md).[finally](create.md#protected-finally)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:67
+Defined in node_modules/@oclif/command/lib/command.d.ts:70
 
 **Parameters:**
 
@@ -454,7 +465,7 @@ ___
 
 *Inherited from [Create](create.md).[init](create.md#protected-init)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:62
+Defined in node_modules/@oclif/command/lib/command.d.ts:65
 
 **Returns:** *Promise‹any›*
 
@@ -466,7 +477,7 @@ ___
 
 *Inherited from [Create](create.md).[log](create.md#log)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:57
+Defined in node_modules/@oclif/command/lib/command.d.ts:60
 
 **Parameters:**
 
@@ -485,7 +496,7 @@ ___
 
 *Inherited from [Create](create.md).[parse](create.md#static-parse)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:63
+Defined in node_modules/@oclif/command/lib/command.d.ts:66
 
 **Type parameters:**
 
@@ -522,7 +533,7 @@ ___
 
 *Inherited from [Create](create.md).[warn](create.md#warn)*
 
-Defined in node_modules/@oclif/command/lib/command.d.ts:48
+Defined in node_modules/@oclif/command/lib/command.d.ts:51
 
 **Parameters:**
 
