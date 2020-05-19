@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://gitlab.com/SkeLLLa/yammy/compare/v2.0.1...v2.1.0) (2020-05-19)
+
+
+### Features
+
+* **deps:** update deps major versions ([320f306](https://gitlab.com/SkeLLLa/yammy/commit/320f306d95d569e17563a91d604685a96d31354e))
+
+
+### Misc
+
+* **deps:** bump acorn from 6.4.0 to 6.4.1 ([68c0b52](https://gitlab.com/SkeLLLa/yammy/commit/68c0b52bb35d2623b58d9a0a07ec3091941d7aba))
+* **deps:** bump jquery from 3.4.1 to 3.5.0 ([1be3321](https://gitlab.com/SkeLLLa/yammy/commit/1be33217367791c91558ebde0f86065c18b8f5d3))
+* **deps-dev:** bump codecov from 3.6.4 to 3.6.5 ([b25f83b](https://gitlab.com/SkeLLLa/yammy/commit/b25f83b8781e77ed10f2f4154b8d3c4f29d3e2f0))
+
 ### [2.0.1](https://gitlab.com/m03geek/yammy/compare/v2.0.0...v2.0.1) (2020-02-10)
 
 
