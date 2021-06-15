@@ -1,3 +1,4 @@
+import { describe, test, expect } from '@jest/globals';
 import { run } from '../src/cli';
 
 describe('cli', () => {

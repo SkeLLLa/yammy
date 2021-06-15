@@ -4,6 +4,10 @@ import cli from 'cli-ux';
 import path from 'path';
 import { promises as fs } from 'fs';
 
+export interface ICreateArgs {
+  name: string;
+}
+
 export default class Create extends Command {
   static description = 'create migration file';
 
@@ -25,7 +29,7 @@ export default class Create extends Command {
 
   async run(): Promise<void> {
     const { flags, args } = this.parse(Create);
-    const { name } = args;
+    const { name } = args as ICreateArgs;
     const { root } = this.config;
     cli.action.start('Reading config');
     const config = getConfig(flags.config) || {};

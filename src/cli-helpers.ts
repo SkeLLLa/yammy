@@ -16,13 +16,13 @@ export function getConfig(file?: string): ConfigFile | undefined {
   const cwd = process.cwd();
   if (file) {
     if (path.isAbsolute(file)) {
-      return require(file);
+      return require(file) as ConfigFile;
     }
-    return require(path.join(cwd, file));
+    return require(path.join(cwd, file)) as ConfigFile;
   }
   for (const fileName of CONFIG_NAMES) {
     try {
-      return require(path.join(cwd, fileName));
+      return require(path.join(cwd, fileName)) as ConfigFile;
     } catch (ex) {
       // ignore
     }

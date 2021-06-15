@@ -58,6 +58,11 @@ export interface MigrationFile {
   status: Date | null;
 }
 
+export interface IMigrationModel {
+  fileName: string;
+  appliedAt: Date;
+}
+
 interface MigrateOptionsDefaults {
   /**
    * Directory with migrations, relative to your program cwd or absolute
@@ -119,18 +124,17 @@ class Migrate {
 
     for (const fileName of files.sort()) {
       const filePath = path.join(this._options.dir, fileName);
-      const migration = await import(filePath);
-
+      const migration = (await import(filePath)) as Migration;
       const db = this._client.db(migration.db);
-      const mCollection = db.collection(this._options.changelog);
-      dbs.set(migration.name, mCollection);
+      const mCollection = db.collection<MigrationStatus>(this._options.changelog);
+      dbs.set(fileName, mCollection);
       const status = await mCollection.findOne({ fileName });
 
       this._files.push({
         fileName,
         migration,
         db,
-        status: status ? status.appliedAt : null,
+        status: status?.appliedAt ?? null,
       });
     }
 

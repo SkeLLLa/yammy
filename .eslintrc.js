@@ -22,6 +22,7 @@ module.exports = {
   },
   plugins: ['prettier', 'sort-requires', '@typescript-eslint'],
   rules: {
+    '@typescript-eslint/no-var-requires': 'off',
     'prettier/prettier': 'error',
     'arrow-body-style': 'off',
     'global-require': 'off',

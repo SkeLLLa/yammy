@@ -1,3 +1,4 @@
+import { jest, beforeAll, describe, test, expect } from '@jest/globals';
 import { getConfig } from '../src/cli-helpers';
 
 describe('cli helpers', () => {

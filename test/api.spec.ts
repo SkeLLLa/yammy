@@ -1,4 +1,4 @@
-import 'jest';
+import { beforeAll, afterAll, describe, test, expect } from '@jest/globals';
 import { MongoMemoryReplSet } from 'mongodb-memory-server';
 import Migrate from '../src';
 import { MongoClient } from 'mongodb';

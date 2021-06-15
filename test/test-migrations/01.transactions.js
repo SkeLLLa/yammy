@@ -6,7 +6,10 @@ const collection = 'test';
  * @param {import('mongodb').Db} db
  */
 exports.up = async (db, session) => {
-  await db.createCollection(collection);
+  await db.createCollection(collection).catch((_err) => {
+    //
+  });
+
   await db.collection(collection).insertOne({ name: 'test-1' }, { session });
 };
 /**
