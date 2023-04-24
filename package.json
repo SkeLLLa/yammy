@@ -60,7 +60,7 @@
     "mongodb": "^3.6.9"
   },
   "devDependencies": {
-    "@commitlint/cli": "^12.1.4",
+    "@commitlint/cli": "^17.6.1",
     "@commitlint/config-conventional": "^12.1.4",
     "@jest/globals": "^27.0.3",
     "@oclif/dev-cli": "^1.26.0",
